@@ -1,9 +1,9 @@
 var connection = require("./connection.js");
 
-function printQuestionMarks(num) {
+function printQuestionMarks(valsLength) {
     var arr = [];
 
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < valsLength; i++) {
         arr.push("?");
     }
 
@@ -35,14 +35,15 @@ var orm = {
 
     insertOne: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
-        queryString += " ("
+        queryString += " (";
         queryString += cols.toString();
-        queryString += ") VALUES (";
+        queryString += ") ";
+        queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
         console.log(queryString);
 
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, vals, function(err, result) {
             if (err) {
             throw err;
             }

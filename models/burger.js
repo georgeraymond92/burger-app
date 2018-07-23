@@ -6,17 +6,23 @@ var burger = {
             cb(res);
         })
     },
-    createOne: function(name, cb) {
-        orm.createOne("burgers", [
+    insertOne: function(name, cb) {
+        orm.insertOne("burgers", [
             "burger_name", "devoured"
         ], [
             name, false
         ], cb ); 
     },
-    updateOne: function(id, cb) {
+    eatBurger: function(id, cb) {
         var condition = "id=" + id;
         orm.updateOne("burgers", {
             devoured: true
+        }, condition, cb);
+    },
+    returnBurger: function(id, cb) {
+        var condition = "id=" + id;
+        orm.updateOne("burgers", {
+            devoured: false
         }, condition, cb);
     }
 };
