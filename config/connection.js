@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+var mysql = Require("mysql");
 var connection;
 
 if (process.env.JAWSDB_URL) {
